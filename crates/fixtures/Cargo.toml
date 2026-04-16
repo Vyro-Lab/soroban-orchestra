@@ -11,3 +11,6 @@ rust_decimal.workspace = true
 num-traits.workspace = true
 serde.workspace = true
 soroban-token-sdk.workspace = true
+
+[features]
+default = []

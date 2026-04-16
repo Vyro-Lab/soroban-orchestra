@@ -6,14 +6,29 @@ description = "High-level multi-contract test harness for Soroban"
 
 [dependencies]
 soroban-band-core = { path = "../core" }
-soroban-band-fixtures = { path = "../fixtures" }
+soroban-band-fixtures = { path = "../fixtures", optional = true }
 soroban-band-proptest = { path = "../proptest", optional = true }
 soroban-band-macros = { path = "../macros", optional = true }
 soroban-band-report = { path = "../report", optional = true }
 
 [features]
-default = []
-full = ["proptest", "macros", "report"]
+# Default features (core + fixtures)
+default = ["fixtures"]
+
+# Enables ready-to-use fixtures for tokens, accounts, and oracles
+fixtures = ["dep:soroban-band-fixtures"]
+
+# Enables WASM compilation paths (requires stellar-cli in PATH)
+wasm = ["soroban-band-core/wasm"]
+
+# Enables all optional layers (proptest, macros, report)
+full = ["proptest", "macros", "report", "wasm"]
+
+# Enables property-based testing and strategy generators
 proptest = ["dep:soroban-band-proptest"]
+
+# Enables the scenario DSL via procedural macros
 macros = ["dep:soroban-band-macros"]
+
+# Enables interaction tracking and coverage reporting
 report = ["dep:soroban-band-report"]

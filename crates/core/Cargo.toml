@@ -13,3 +13,7 @@ serde_json.workspace = true
 petgraph.workspace = true
 indexmap.workspace = true
 once_cell.workspace = true
+
+[features]
+# Enables WASM-based contract compilation and registration paths via stellar-cli
+wasm = []

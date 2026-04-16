@@ -53,7 +53,20 @@ Band is the missing layer between `soroban-sdk` unit tests and live testnet depl
 
 Add Band to the `[dev-dependencies]` section of your contract crate's `Cargo.toml`. It is never a production dependency.
 
-Feature flags control which capabilities are compiled. The core orchestration and fixture library are always included. Property testing and the scenario DSL are opt-in to keep compile times minimal for teams that don't need them.
+Feature flags control which capabilities are compiled. The core orchestration and fixture library are always included by default.
+
+### Feature Flags
+
+Band uses feature flags to selectively enable functionality and manage dependencies.
+
+| Flag | Description | Included in `default` |
+|------|-------------|-----------------------|
+| `fixtures` | Enables the pre-built fixture library (tokens, oracles, accounts) | Yes |
+| `wasm` | Enables WASM compilation via `stellar-cli` (requires `stellar-cli` in PATH) | No |
+| `proptest` | Enables property-based testing strategies and stateful fuzzing | No |
+| `macros` | Enables the procedural macro scenario DSL | No |
+| `report` | Enables interaction tracking and coverage reporting | No |
+| `full` | Enables all features above | No |
 
 ---
 
