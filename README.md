@@ -2,7 +2,7 @@
 
 **A multi-contract integration test harness for Soroban smart contracts.**
 
-Band gives Soroban developers the ability to deploy, wire, and test complex multi-contract systems in a single, reproducible environment — no manual boilerplate, no hand-rolled auth trees, no guessing which cross-contract paths your tests actually cover.
+Band gives Soroban developers the ability to deploy, wire, and test complex multi-contract systems in a single, reproducible environment, with no manual boilerplate, no hand-rolled auth trees, and no guessing which cross-contract paths your tests actually cover.
 
 If you are building a dApp where Contract A calls Contract B calls Contract C, Band is the test infrastructure you are currently writing by hand.
 
@@ -14,24 +14,24 @@ Soroban's built-in test utilities work well for single-contract unit tests. Real
 
 A lending protocol has a pool, a collateral manager, an oracle adapter, and SEP-41 token wrappers. A DEX has a router, factory, pair contracts, and fee accumulators. Every team writes the same scaffolding from scratch: dependency-ordered deployment, auth trees, funded accounts, mock oracles, cross-contract coverage.
 
-Band is the missing layer between `soroban-sdk` unit tests and live testnet deployment. It wraps the SDK's existing test utilities — it never forks or replaces them.
+Band is the missing layer between `soroban-sdk` unit tests and live testnet deployment. It wraps the SDK's existing test utilities; it never forks or replaces them.
 
 ---
 
 ## Features
 
-- **Dependency-aware deployment** — declare contracts and cross-references; Band topologically sorts, deploys, and wires them with a single `build()` call
-- **Auth tree simulation** — model, inspect, and test complex authorization chains across contract boundaries, including delegated and multi-hop auth
-- **Auth trace inspection** — dump a human-readable trace of every auth check after any cross-contract call
-- **SEP-41 token fixtures** — deploy compliant tokens in one line with pre-funded balances; includes fee-on-transfer and rebasing variants
-- **Oracle mock fixtures** — static prices, time-sequenced feeds, and configurable failure modes (stale, missing, extreme deviation)
-- **Snapshot and restore** — checkpoint environment state and restore it to test alternative paths without redeploying
-- **Time travel** — advance ledger timestamps and sequence numbers to test time-locked logic
-- **Cross-contract call graph tracking** — record which contracts called which functions, and report untested paths
-- **Interaction coverage metrics** — measure what percentage of each contract's public interface has been exercised, with CI-gating support
-- **Property-based testing** — strategy generators for all Soroban types, stateful multi-contract fuzzing with automatic shrinking
-- **Scenario DSL** — proc macro attributes that declare full multi-contract environments in a few lines
-- **Zero runtime cost** — dev-dependency only; nothing ever ships to chain
+- **Dependency-aware deployment**, declare contracts and cross-references; Band topologically sorts, deploys, and wires them with a single `build()` call
+- **Auth tree simulation**, model, inspect, and test complex authorization chains across contract boundaries, including delegated and multi-hop auth
+- **Auth trace inspection**, dump a human-readable trace of every auth check after any cross-contract call
+- **SEP-41 token fixtures**, deploy compliant tokens in one line with pre-funded balances; includes fee-on-transfer and rebasing variants
+- **Oracle mock fixtures**, static prices, time-sequenced feeds, and configurable failure modes (stale, missing, extreme deviation)
+- **Snapshot and restore**, checkpoint environment state and restore it to test alternative paths without redeploying
+- **Time travel**, advance ledger timestamps and sequence numbers to test time-locked logic
+- **Cross-contract call graph tracking**, record which contracts called which functions, and report untested paths
+- **Interaction coverage metrics**, measure what percentage of each contract's public interface has been exercised, with CI-gating support
+- **Property-based testing**, strategy generators for all Soroban types, stateful multi-contract fuzzing with automatic shrinking
+- **Scenario DSL**, proc macro attributes that declare full multi-contract environments in a few lines
+- **Zero runtime cost**, dev-dependency only; nothing ever ships to chain
 
 ---
 
@@ -48,7 +48,7 @@ Band is the missing layer between `soroban-sdk` unit tests and live testnet depl
 
 - Rust 1.74 or higher
 - `soroban-sdk` 21.x or higher (tracks the latest stable SDK release)
-- `stellar-cli` (optional — only required for WASM compilation)
+- `stellar-cli` (optional; only required for WASM compilation)
 - `cargo` with workspace support
 
 ---
@@ -81,11 +81,11 @@ Band is never a production dependency.
 
 A typical Band test follows this flow:
 
-1. **Declare** — list your contracts, tokens, oracles, and accounts
-2. **Build** — Band resolves dependencies, deploys contracts, wires cross-references, funds accounts
-3. **Act** — invoke contract functions through Band's environment, which tracks all cross-contract calls
-4. **Assert** — use standard Rust assertions plus Band's fixture-specific helpers
-5. **Report** — Band aggregates call graphs and coverage metrics after the suite runs
+1. **Declare**, list your contracts, tokens, oracles, and accounts
+2. **Build**, Band resolves dependencies, deploys contracts, wires cross-references, funds accounts
+3. **Act**, invoke contract functions through Band's environment, which tracks all cross-contract calls
+4. **Assert**, use standard Rust assertions plus Band's fixture-specific helpers
+5. **Report**, Band aggregates call graphs and coverage metrics after the suite runs
 
 ---
 
@@ -109,16 +109,16 @@ Band is a Cargo workspace. The main crate re-exports everything; sub-crates are 
 
 Band ships in four staged public releases. Each stage is a complete, usable product that builds on the previous one. Adopting an earlier stage never requires code changes when a later stage ships.
 
-### Stage 1 — Foundation
+### Stage 1: Foundation
 The minimum viable harness that replaces hand-written multi-contract boilerplate. Core orchestration, dependency-aware deployment, auth tree simulation, SEP-41 token fixtures, snapshot/restore, and time travel.
 
-### Stage 2 — Observe & Harden
+### Stage 2: Observe & Harden
 Expanded fixtures for real-world edge cases and cross-contract coverage tracking. Oracle mocks with failure modes, fee-on-transfer and rebasing tokens, account personas, liquidity pool and governance mocks, call graph tracking, and terminal coverage output.
 
-### Stage 3 — Fuzz & Verify
+### Stage 3: Fuzz & Verify
 Property-based testing that finds bugs manual tests miss. Strategy generators for all Soroban types, stateful multi-contract fuzzing, automatic shrinking, seed persistence for CI replay, and a built-in invariant library.
 
-### Stage 4 — Automate & Scale
+### Stage 4: Automate & Scale
 Ergonomics and scale. Scenario DSL via proc macros, scenario composition and parameterization, JSON/DOT/Mermaid/HTML reports, CI threshold gating, and the `cargo soroban-band` CLI for scaffolding.
 
 ---
@@ -147,7 +147,7 @@ Contributions are welcome. Band is designed to grow with the Soroban ecosystem, 
 
 1. Check the [open issues](../../issues) and the current stage roadmap to see where help is most valuable.
 2. For non-trivial changes, open an issue to discuss the design before writing code.
-3. Read the design principles above — contributions that conflict with them are unlikely to be merged.
+3. Read the design principles above; contributions that conflict with them are unlikely to be merged.
 
 **Getting started:**
 
