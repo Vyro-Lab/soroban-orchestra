@@ -1,6 +1,6 @@
 # Soroban Band
 
-**A multi-contract integration test harness for Soroban smart contracts.**
+**A multi-contract integration test framework for Soroban smart contracts.**
 
 Band gives Soroban developers the ability to deploy, wire, and test complex multi-contract systems in a single, reproducible environment, with no manual boilerplate, no hand-rolled auth trees, and no guessing which cross-contract paths your tests actually cover.
 
